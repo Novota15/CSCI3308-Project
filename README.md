@@ -27,3 +27,7 @@
         ```
 
 Use `pip3 install PACKAGE_NAME` to make these available for importing.
+
+### Useful Resources
+
+* [Getting Started with Django](https://www.djangoproject.com/start/)
