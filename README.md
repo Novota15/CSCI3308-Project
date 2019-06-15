@@ -1,4 +1,4 @@
-# CSCI3308-Project: Stock Analysis
+# CSCI3308-Project: Stock Market Web App
 
 ### Requirements
 
