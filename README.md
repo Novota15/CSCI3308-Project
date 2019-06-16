@@ -28,6 +28,8 @@
 
 Use `pip3 install PACKAGE_NAME` to make these available for importing.
 
+pytrends and fbprophet can run into problems installing with pip. The Anaconda distribution of Python may be needed to install. [Guide](https://facebook.github.io/prophet/docs/installation.html)
+
 ### Useful Resources
 
 * [Getting Started with Django](https://www.djangoproject.com/start/)
