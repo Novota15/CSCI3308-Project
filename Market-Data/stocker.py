@@ -2,9 +2,16 @@
 # fbprophet for additive models, #pytrends for Google trend data
 import quandl
 import pandas as pd
+import pandas_datareader.data as web
 import numpy as np
 import fbprophet
 import pytrends
+import datetime
+import yfinance as yf
+
+# from yahoo_finance import Share
+from alpha_vantage.timeseries import TimeSeries
+
 from pytrends.request import TrendReq
 
 # matplotlib pyplot for plotting
@@ -26,11 +33,35 @@ class Stocker():
         self.symbol = ticker
         
         # Use Personal Api Key
-        # quandl.ApiConfig.api_key = 'YourKeyHere'
+        #quandl.ApiConfig.api_key = 'ACnuC1tLTWn4f4vAkE9J'
+
+        alpha_ts = TimeSeries(key='CSA4QYK4A5BRGCDC', output_format='pandas', indexing_type='integer')
+
 
         # Retrieval the financial data
         try:
-            stock = quandl.get('%s/%s' % (exchange, ticker))
+            data, meta_data = alpha_ts.get_daily(symbol=ticker, outputsize='full')
+            #data, meta_data = alpha_ts.get_intraday(symbol=ticker, interval='1min', outputsize='full')
+            #data.rename({'date': 'Date','4. close': 'Adj. Close', '1. open': 'Adj. Open'}, axis=1, inplace=True)
+            
+            data.columns = ['Date','Adj. Open','2. high','3. low','Adj. Close', 'Volume']
+            data['Date'] =  pd.to_datetime(data['Date'])
+            data.to_csv('msft.csv')
+        #    #formatted_data = StringIO(data)
+        #    print(type(data))
+        #    stock = data
+           # stock = pd.read_csv(data, sep=",")
+           #stock = pd.DataFrame([x.split(',') for x in data.split('\n')])
+        #    stock = quandl.get('%s/%s' % (exchange, ticker), end_date="2019-06-12")
+        #    stock.to_csv('msftquandle.csv')
+        #    print("stock var type:", type(stock))
+            stock = data
+            start_date = datetime.datetime(2010,1,1)
+            end_date = datetime.datetime(2019,6,11)
+            ystock = yf.download(ticker, start_date, end_date)
+            ystock.head()
+            ystock.to_csv('ystock.csv')
+            stock = ystock
         
         except Exception as e:
             print('Error Retrieving Data.')
@@ -40,12 +71,17 @@ class Stocker():
         # Set the index to a column called Date
         stock = stock.reset_index(level=0)
         
+        # correction from using new data source
+        # if ('Date' not in stock.columns):
+        #     # stock['Date'] = stock['date']
+        #     stock.rename(columns={'date': 'Date','4. close': 'Adj. Close', '1. open': 'Adj. Open'})
+
         # Columns required for prophet
         stock['ds'] = stock['Date']
 
         if ('Adj. Close' not in stock.columns):
-            stock['Adj. Close'] = stock['Close']
-            stock['Adj. Open'] = stock['Open']
+            stock['Adj. Close'] = stock['Open']
+            stock['Adj. Open'] = stock['Close']
         
         stock['y'] = stock['Adj. Close']
         stock['Daily Change'] = stock['Adj. Close'] - stock['Adj. Open']
@@ -56,6 +92,9 @@ class Stocker():
         # Minimum and maximum date in range
         self.min_date = min(stock['Date'])
         self.max_date = max(stock['Date'])
+
+        self.min_date = pd.to_datetime(self.min_date)
+        self.max_date = pd.to_datetime(self.max_date)
         
         # Find max and min prices and dates on which they occurred
         self.max_price = np.max(self.stock['y'])
@@ -95,7 +134,7 @@ class Stocker():
     Make sure start and end dates are in the range and can be
     converted to pandas datetimes. Returns dates in the correct format
     """
-    def handle_dates(self, start_date, end_date):
+    def handle_dates(self, start_date=None, end_date=None):
         
         
         # Default start and end date are the beginning and end of data
@@ -151,10 +190,14 @@ class Stocker():
         # Default is to use the object stock data
         if not df:
             df = self.stock.copy()
-        
+
+        if ('Date' not in df.columns):
+            df['Date'] = df['date']
+      
         
         start_date, end_date = self.handle_dates(start_date, end_date)
-        
+        # start_date = str(start_date)
+        # end_date = str(end_date)
         # keep track of whether the start and end dates are in the data
         start_in = True
         end_in = True
