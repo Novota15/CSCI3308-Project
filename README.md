@@ -28,3 +28,7 @@ pytrends and fbprophet can run into problems installing with pip. The Anaconda d
 ### Useful Resources
 
 * [Getting Started with Django](https://www.djangoproject.com/start/)
+
+### Usage
+
+To start the web app, run stock-explorer.py
