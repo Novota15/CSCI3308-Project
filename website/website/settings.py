@@ -1,1 +1,0 @@
-# settings/config for the Django project

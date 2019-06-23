@@ -1,1 +1,0 @@
-# an entry-point for WSGI-compatible web servers to serve project

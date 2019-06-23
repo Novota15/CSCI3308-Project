@@ -28,7 +28,7 @@ class Stocker():
         
         # Enforce capitalization
         ticker = ticker.upper()
-        
+        self.tick = ticker
         # Symbol is used for labeling plots
         self.symbol = ticker
         
@@ -316,7 +316,10 @@ class Stocker():
                 plt.legend(prop={'size':10})
                 plt.grid(color = 'k', alpha = 0.4); 
       
-        plt.show();
+        #plt.show();
+        fig = plt.gcf()
+        fig.savefig(self.tick+".png", dpi=100)
+        fig.clear()
         
     # Reset the plotting parameters to clear style formatting
     # Not sure if this should be a static method
