@@ -3,7 +3,7 @@ from flask import request
 from flask import render_template
 from flask import send_file
 #import stringComparison
-from Market-Data.stocker import Stocker
+from MarketData.stocker import Stocker
 
 app = Flask(__name__)
 
