@@ -1,11 +1,11 @@
-# CSCI3308-Project: Stock Market Web App
+# CSCI3308-Project: Stock Explorer
 
 ### Requirements
 
 * Python 3.7
     * Web Development:
         ```
-        Django >= 2.2.2
+        Flask
         ```
     * Visualization
         ```
@@ -21,11 +21,6 @@
         pandas >= 0.22.0
         pytrends >= 4.3.0
         ```
-    * Market Interaction:
-        ```
-        robin-stocks >= 0.9.8.7
-        ```
-
 Use `pip3 install PACKAGE_NAME` to make these available for importing.
 
 pytrends and fbprophet can run into problems installing with pip. The Anaconda distribution of Python may be needed to install. [Guide](https://facebook.github.io/prophet/docs/installation.html)
