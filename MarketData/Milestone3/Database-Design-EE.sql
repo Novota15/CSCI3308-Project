@@ -44,7 +44,7 @@ CREATE TABLE nasdaq_data
    );
 
 
-   COPY nasdaq_data FROM '/Users/arwasadiq/Desktop/Milestone 3/nasdaq.csv' HEADER CSV  DELIMITER ',';
+   COPY nasdaq_data FROM '/Users/arwasadiq/Desktop/Milestone3/nasdaq.csv' HEADER CSV  DELIMITER ',';
 
 
    DROP TABLE IF EXISTS nyse_data;
@@ -62,4 +62,4 @@ CREATE TABLE nyse_data
    );
  
 
-   COPY nyse_data FROM '/Users/arwasadiq/Desktop/Milestone 3/nyse.csv' HEADER CSV  DELIMITER ',';
+   COPY nyse_data FROM '/Users/arwasadiq/Desktop/Milestone3/nyse.csv' HEADER CSV  DELIMITER ',';
