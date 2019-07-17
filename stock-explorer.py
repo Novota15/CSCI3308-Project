@@ -34,8 +34,8 @@ def plot_input_post():
         stock_plot = text + ".png"
         prediction_plot = text + "-prophet-model.png"
         # return send_file(filename, mimetype='image/png')
-        return render_template("market-dash.html", stock_plot=stock_plot, prediction_plot=prediction_plot)
-    return render_template("market-dash.html", filename="MSFT.png") # name of your html file, pass in variables
+        return render_template("Dashboard.html", stock_plot=stock_plot, prediction_plot=prediction_plot)
+    return render_template("Dashboard.html", filename="MSFT.png") # name of your html file, pass in variables
 
 
 
