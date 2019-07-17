@@ -406,7 +406,10 @@ class Stocker():
             size = 14)
         
         plt.grid(alpha=0.2)
-        plt.show();
+        #plt.show();
+        fig = plt.gcf()
+        fig.savefig("./static/" + self.tick + "-buy-and-hold.png", dpi=100)
+        fig.clear()
         
     # Create a prophet model without training
     def create_model(self):
@@ -477,7 +480,10 @@ class Stocker():
         # Plot labels
         plt.legend(loc = 2, prop={'size': 10})
         plt.xlabel('Date'); plt.ylabel('Stock Price ($)'); plt.title('Effect of Changepoint Prior Scale');
-        plt.show()
+        #plt.show()
+        fig = plt.gcf()
+        fig.savefig("./static/" + self.tick + "-changepoint-prior-analysis.png", dpi=100)
+        fig.clear()
             
     # Basic prophet model for specified number of days  
     def create_prophet_model(self, days=0, resample=False):
@@ -523,8 +529,11 @@ class Stocker():
         # Plot formatting
         plt.legend(loc = 2, prop={'size': 10}); plt.xlabel('Date'); plt.ylabel('Price $');
         plt.grid(linewidth=0.6, alpha = 0.6)
-        plt.title(title);
-        plt.show()
+        plt.title(title)
+        #plt.show()
+        fig = plt.gcf()
+        fig.savefig("./static/" + self.tick + "-prophet-model.png", dpi=100)
+        fig.clear()
         
         return model, future
       
@@ -634,7 +643,10 @@ class Stocker():
                        
             plt.title('{} Model Evaluation from {} to {}.'.format(self.symbol,
                 start_date, end_date));
-            plt.show();
+            #plt.show();
+            fig = plt.gcf()
+            fig.savefig("./static/" + self.tick + "-evaluate-prediction.png", dpi=100)
+            fig.clear()
 
         
         # If a number of shares is specified, play the game
@@ -720,7 +732,11 @@ class Stocker():
             plt.title('Predicted versus Buy and Hold Profits');
             plt.legend(loc = 2, prop={'size': 10});
             plt.grid(alpha=0.2); 
-            plt.show()
+            #plt.show()
+            fig = plt.gcf()
+            fig.savefig("./static/" + self.tick + "-evaluate-prediction.png", dpi=100)
+            fig.clear()
+        return
         
     def retrieve_google_trends(self, search, date_range):
         
