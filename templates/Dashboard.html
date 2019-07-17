@@ -134,15 +134,15 @@ Tip 2: you can also add an image using data-image tag
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
+    <div>
+      <div>
         <div class="card card-chart">
           <div class="card-header card-header-success">
             <div class="ct-chart" id="dailySalesChart"></div>
             <img src = "{{url_for('static', filename=stock_plot)}}">
           </div>
           <div class="card-body">
-            <h4 class="card-title">Prediction Chart</h4>
+            <h4 class="card-title">Stock History</h4>
 
             <p class="card-category">
 
@@ -155,14 +155,14 @@ Tip 2: you can also add an image using data-image tag
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div>
           <div class="card card-chart">
             <div class="card-header card-header-warning">
               <div class="ct-chart" id="websiteViewsChart"></div>
               <img src = "{{url_for('static', filename=prediction_plot)}}">
             </div>
             <div class="card-body">
-              <h4 class="card-title">Stock History</h4>
+              <h4 class="card-title">Stock Prediction</h4>
               <p class="card-category"></p>
 
             </div>
