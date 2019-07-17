@@ -57,7 +57,7 @@ class Stocker():
         #    print("stock var type:", type(stock))
             stock = data
             start_date = datetime.datetime(2010,1,1)
-            end_date = datetime.datetime(2019,6,11)
+            end_date = datetime.datetime(2019,7,17)
             ystock = yf.download(ticker, start_date, end_date)
             ystock.head()
             ystock.to_csv('ystock.csv')
@@ -318,7 +318,7 @@ class Stocker():
       
         #plt.show();
         fig = plt.gcf()
-        fig.savefig(self.tick+".png", dpi=100)
+        fig.savefig("./static/" + self.tick + ".png", dpi=100)
         fig.clear()
         
     # Reset the plotting parameters to clear style formatting
