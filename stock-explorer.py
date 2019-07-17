@@ -16,8 +16,8 @@ app = Flask(__name__)
 # if request.method == 'POST' do post stuff
 
 def plot_history(stock):
-    stock.plot_stock()
-    return
+    historic_max, historic_min, current = stock.plot_stock()
+    return historic_max, historic_min, current
 
 def plot_prediction(stock):
     model, model_data = stock.create_prophet_model()
@@ -29,12 +29,12 @@ def plot_input_post():
         text = request.form['ticker']
         stock = Stocker(ticker=text)
         # stock.plot_stock()
-        plot_history(stock)
+        historic_max, historic_min, current_price = plot_history(stock)
         model, model_data = plot_prediction(stock)
         stock_plot = text + ".png"
         prediction_plot = text + "-prophet-model.png"
         # return send_file(filename, mimetype='image/png')
-        return render_template("Dashboard.html", stock_plot=stock_plot, prediction_plot=prediction_plot)
+        return render_template("Dashboard.html", stock_plot=stock_plot, historic_max=historic_max, historic_min=historic_min, current_price=current_price, prediction_plot=prediction_plot)
     return render_template("Dashboard.html", stock_plot="MSFT.png", prediction_plot="MSFT.png") # name of your html file, pass in variables
 
 

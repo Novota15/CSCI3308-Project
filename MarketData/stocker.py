@@ -288,8 +288,11 @@ class Stocker():
             date_stat_max = date_stat_max[date_stat_max.index[0]]
             
             print('Maximum {} = {:.2f} on {}.'.format(stat, stat_max, date_stat_max))
+            Maximum = 'Maximum {} = {:.2f} on {}.'.format(stat, stat_max, date_stat_max)
             print('Minimum {} = {:.2f} on {}.'.format(stat, stat_min, date_stat_min))
+            Minimum = 'Minimum {} = {:.2f} on {}.'.format(stat, stat_min, date_stat_min)
             print('Current {} = {:.2f} on {}.\n'.format(stat, self.stock.loc[self.stock.index[-1], stat], self.max_date))
+            Current = 'Current {} = {:.2f} on {}.\n'.format(stat, self.stock.loc[self.stock.index[-1], stat], self.max_date)
             
             # Percentage y-axis
             if plot_type == 'pct':
@@ -320,6 +323,7 @@ class Stocker():
         fig = plt.gcf()
         fig.savefig("./static/" + self.tick + ".png", dpi=100)
         fig.clear()
+        return Maximum, Minimum, Current
         
     # Reset the plotting parameters to clear style formatting
     # Not sure if this should be a static method
