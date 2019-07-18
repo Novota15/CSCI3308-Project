@@ -59,8 +59,10 @@ class Stocker():
         #    stock.to_csv('msftquandle.csv')
         #    print("stock var type:", type(stock))
             stock = data
+            # start_date = datetime.datetime(2010,1,1)
+            # end_date = datetime.datetime(2019,7,17)
             start_date = datetime.datetime(2010,1,1)
-            end_date = datetime.datetime(2019,7,17)
+            end_date = datetime.datetime.now().strftime('%Y-%m-%d')
             ystock = yf.download(ticker, start_date, end_date)
             ystock.head()
             ystock.to_csv('ystock.csv')
@@ -95,7 +97,7 @@ class Stocker():
         # Minimum and maximum date in range
         self.min_date = min(stock['Date'])
         self.max_date = max(stock['Date'])
-
+        #print("MAX DATE: ", self.max_date)
         self.min_date = pd.to_datetime(self.min_date)
         self.max_date = pd.to_datetime(self.max_date)
         
@@ -393,6 +395,8 @@ class Stocker():
         
         print('{} Total buy and hold profit from {} to {} for {} shares = ${:.2f}'.format
               (self.symbol, start_date, end_date, nshares, total_hold_profit))
+
+        result = '{} Total buy and hold profit from {} to {} for {} shares = ${:.2f}'.format(self.symbol, start_date, end_date, nshares, total_hold_profit)
         
         # Plot the total profits 
         plt.style.use('dark_background')
@@ -417,6 +421,7 @@ class Stocker():
         fig = plt.gcf()
         fig.savefig("./static/" + self.tick + "-buy-and-hold.png", dpi=100)
         fig.clear()
+        return result
         
     # Create a prophet model without training
     def create_model(self):
