@@ -1,0 +1,24 @@
+<div>
+        <div class="card card-chart">
+          <div class="card-header card-header-success">
+            <div class="ct-chart" id="dailySalesChart"></div>
+            <img src = "{{url_for('static', filename=history_plot.filepath)}}">
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Stock History</h4>
+            <p class="card-category">
+                <ul>
+                    <li>{{ history_plot.historic_max }}</li>
+                    <li>{{ history_plot.historic_min }}</li>
+                    <li>{{ history_plot.current }}</li>
+                </ul>  
+            </p>
+              <!-- <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p> -->
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons">access_time</i> updated 4 minutes ago
+              </div>
+            </div>
+          </div>
+        </div>
