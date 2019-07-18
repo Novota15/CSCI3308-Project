@@ -18,9 +18,6 @@
 
 .card {
   font-size: .875rem;
-  width: 100%;
-  /* height: 15vw; */
-  object-fit: cover;
 }
 
 *,
