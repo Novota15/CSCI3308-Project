@@ -2,12 +2,17 @@
 =========================================================
 Material Dashboard - v2.1.1
 =========================================================
+
 Product Page: https://www.creative-tim.com/product/material-dashboard
 Copyright 2019 Creative Tim (https://www.creative-tim.com)
 Licensed under MIT (https://github.com/creativetimofficial/material-dashboard/blob/master/LICENSE.md)
+
 Coded by Creative Tim
+
 Templated Edited by Team EE for CSCI3308 
+
 =========================================================
+
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 
 <!doctype html>
@@ -31,12 +36,13 @@ The above copyright notice and this permission notice shall be included in all c
     <div class="sidebar" data-color="azure" data-background-color="white">
 <!--
 Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
 Tip 2: you can also add an image using data-image tag
 -->
 <div class="logo">
 </a>
 <a href="" class="simple-text logo-normal">
-  Stock Explorer
+  StockAnalytica
 </a>
 </div>
 <div class="sidebar-wrapper">
@@ -133,15 +139,15 @@ Tip 2: you can also add an image using data-image tag
         <div class="card card-chart">
           <div class="card-header card-header-success">
             <div class="ct-chart" id="dailySalesChart"></div>
-            <img src = "{{url_for('static', filename=history_plot.filepath)}}">
+            <img src = "{{url_for('static', filename=stock_plot)}}">
           </div>
           <div class="card-body">
             <h4 class="card-title">Stock History</h4>
             <p class="card-category">
                 <ul>
-                    <li>{{ history_plot.historic_max }}</li>
-                    <li>{{ history_plot.historic_min }}</li>
-                    <li>{{ history_plot.current }}</li>
+                    <li>{{ historic_max }}</li>
+                    <li>{{ historic_min }}</li>
+                    <li>{{ current_price }}</li>
                 </ul>  
             </p>
               <!-- <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p> -->
@@ -157,13 +163,11 @@ Tip 2: you can also add an image using data-image tag
           <div class="card card-chart">
             <div class="card-header card-header-warning">
               <div class="ct-chart" id="websiteViewsChart"></div>
-              <img src = "{{url_for('static', filename=prophet_model.filepath)}}">
+              <img src = "{{url_for('static', filename=prediction_plot)}}">
             </div>
             <div class="card-body">
               <h4 class="card-title">Stock Prediction</h4>
-              <p class="card-category">
-                {{ prophet_model.predicted_price }}
-              </p>
+              <p class="card-category"></p>
 
             </div>
             <div class="card-footer">
@@ -173,32 +177,48 @@ Tip 2: you can also add an image using data-image tag
             </div>
           </div>
         </div>
-        <div>
-            <div class="card card-chart">
-              <div class="card-header card-header-warning">
-                <div class="ct-chart" id="websiteViewsChart"></div>
-                <img src = "{{url_for('static', filename=change_points_date.filepath)}}">
-              </div>
-              <div class="card-body">
-                <h4 class="card-title">Stock with Changepoints</h4>
-                <p class="card-category">
-                    {% for para in change_points_date.summary %}
-                    <p>{{para}}</p>
-                    {% endfor %}
-                </p>
-  
-              </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons"></i> 
-                </div>
+                <div>
+          <div class="card card-chart">
+            <div class="card-header card-header-warning">
+              <div class="ct-chart" id="websiteViewsChart"></div>
+              <img src = "{{url_for('static', filename=prediction_plot)}}">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Stock Prediction</h4>
+              <p class="card-category"></p>
+
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons"></i> 
               </div>
             </div>
           </div>
+        </div>
+                <div>
+          <div class="card card-chart">
+            <div class="card-header card-header-warning">
+              <div class="ct-chart" id="websiteViewsChart"></div>
+              <img src = "{{url_for('static', filename=prediction_plot)}}">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Stock Prediction</h4>
+              <p class="card-category"></p>
+
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons"></i> 
+              </div>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
   </div>
+
+
   <!-- End Navbar -->
   <div class="content">
     <div class="container-fluid">
