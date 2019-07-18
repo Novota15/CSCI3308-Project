@@ -1,3 +1,6 @@
+# Script originally written by Will Koehrsen
+# Modified by Grant Novota
+
 # Quandl for financial analysis, pandas and numpy for data manipulation
 # fbprophet for additive models, #pytrends for Google trend data
 import quandl

@@ -8,6 +8,7 @@ from MarketData.stocker import Stocker
 
 app = Flask(__name__)
 
+# Each plot is an object
 class History_Plot():
     def __init__(self, stock, ticker):
         # time parameters
@@ -28,7 +29,7 @@ class Trends_Plot():
     def __init__(self, ticker, model, model_data):
         model.plot_components(model_data)
         fig = plt.gcf()
-        fig.savefig("./static/" + self.tick + "-trends-plot.png", dpi=100)
+        fig.savefig("./static/" + ticker + "-trends-plot.png", dpi=100)
         fig.clear()
         self.filepath = ticker + "-trends-plot.png"
 
@@ -37,14 +38,14 @@ class Change_Points_Date():
         self.summary = stock.changepoint_date_analysis(search=changept_search)
         self.filepath = ticker + "-changepoint-date-analysis.png"
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/Dashboard', methods=['GET','POST'])
 def plot_input_post():
     if request.method == 'POST':
-        # create stock object
         text = request.form['ticker']
     else:
         # default is microsoft stock
         text = 'MSFT'
+    # create stock object
     stock = Stocker(ticker=text)
     # create plot objects
     history_plot = History_Plot(stock, text)
