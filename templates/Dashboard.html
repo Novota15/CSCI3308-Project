@@ -139,15 +139,15 @@ Tip 2: you can also add an image using data-image tag
         <div class="card card-chart">
           <div class="card-header card-header-success">
             <div class="ct-chart" id="dailySalesChart"></div>
-            <img src = "{{url_for('static', filename=stock_plot)}}">
+            <img src = "{{url_for('static', filename=history_plot.filepath)}}">
           </div>
           <div class="card-body">
             <h4 class="card-title">Stock History</h4>
             <p class="card-category">
                 <ul>
-                    <li>{{ historic_max }}</li>
-                    <li>{{ historic_min }}</li>
-                    <li>{{ current_price }}</li>
+                    <li>{{ history_plot.historic_max }}</li>
+                    <li>{{ history_plot.historic_min }}</li>
+                    <li>{{ history_plot.current }}</li>
                 </ul>  
             </p>
               <!-- <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p> -->
@@ -163,11 +163,13 @@ Tip 2: you can also add an image using data-image tag
           <div class="card card-chart">
             <div class="card-header card-header-warning">
               <div class="ct-chart" id="websiteViewsChart"></div>
-              <img src = "{{url_for('static', filename=prediction_plot)}}">
+              <img src = "{{url_for('static', filename=prophet_model.filepath)}}">
             </div>
             <div class="card-body">
               <h4 class="card-title">Stock Prediction</h4>
-              <p class="card-category"></p>
+              <p class="card-category">
+                  {{ prophet_model.predicted_price }}
+              </p>
 
             </div>
             <div class="card-footer">
@@ -181,11 +183,13 @@ Tip 2: you can also add an image using data-image tag
           <div class="card card-chart">
             <div class="card-header card-header-warning">
               <div class="ct-chart" id="websiteViewsChart"></div>
-              <img src = "{{url_for('static', filename=prediction_plot)}}">
+              <img src = "{{url_for('static', filename=trends_plot.filepath)}}">
             </div>
             <div class="card-body">
-              <h4 class="card-title">Stock Prediction</h4>
-              <p class="card-category"></p>
+              <h4 class="card-title">Trends</h4>
+              <p class="card-category">
+                  
+              </p>
 
             </div>
             <div class="card-footer">
@@ -199,11 +203,15 @@ Tip 2: you can also add an image using data-image tag
           <div class="card card-chart">
             <div class="card-header card-header-warning">
               <div class="ct-chart" id="websiteViewsChart"></div>
-              <img src = "{{url_for('static', filename=prediction_plot)}}">
+              <img src = "{{url_for('static', filename=change_points_date.filepath)}}">
             </div>
             <div class="card-body">
-              <h4 class="card-title">Stock Prediction</h4>
-              <p class="card-category"></p>
+              <h4 class="card-title">Stock with Changepoints</h4>
+              <p class="card-category">
+                  {% for para in change_points_date.summary %}
+                  <p>{{para}}</p>
+                  {% endfor %}
+              </p>
 
             </div>
             <div class="card-footer">
