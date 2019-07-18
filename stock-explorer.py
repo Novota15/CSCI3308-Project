@@ -46,23 +46,29 @@ def plot_input_post():
         text = request.form['ticker']
         stock = Stocker(ticker=text)
         # plot the stock history
-        historic_max, historic_min, current_price = plot_history(stock)
+        # historic_max, historic_min, current_price = plot_history(stock)
         # machine learning predition
-        model, model_data = plot_prediction(stock)
+        # model, model_data = plot_prediction(stock)
         # trends
-        plot_trends(model, model_data)
+        # plot_trends(model, model_data)
 
         # define file paths for graphs
-        stock_plot = text + ".png"
-        prediction_plot = text + "-prophet-model.png"
+        # stock_plot = text + ".png"
+        # prediction_plot = text + "-prophet-model.png"
         # create plot objects
         history_plot = History_Plot(stock, text)
-        days = 0
-        prophet_model = Prophet_Model(stock, text, days)
+        future_days = 0
+        prophet_model = Prophet_Model(stock, text, future_days)
         trends_plot = Trends_Plot(prophet_model.model, prophet_model.model_data)
-        
-        return render_template("Dashboard.html", stock_plot=stock_plot, historic_max=historic_max, historic_min=historic_min, current_price=current_price, prediction_plot=prediction_plot)
-    return render_template("Dashboard.html", stock_plot="MSFT.png", prediction_plot="MSFT.png") # name of your html file, pass in variables
+    else:
+        stock = Stocker(ticker='MSFT')
+        history_plot = History_Plot(stock, 'MSFT')
+        future_days = 0
+        prophet_model = Prophet_Model(stock, 'MSFT', future_days)
+        trends_plot = Trends_Plot(prophet_model.model, prophet_model.model_data)
+        #return render_template("Dashboard.html", stock_plot=stock_plot, historic_max=historic_max, historic_min=historic_min, current_price=current_price, prediction_plot=prediction_plot)
+    return render_template("Dashboard.html", history_plot=history_plot, prophet_model=prophet_model, trends_plot=trends_plot)
+    #return render_template("Dashboard.html", stock_plot="MSFT.png", prediction_plot="MSFT.png") # name of your html file, pass in variables
 
 
 
