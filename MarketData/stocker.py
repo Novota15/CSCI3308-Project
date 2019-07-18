@@ -828,7 +828,10 @@ class Stocker():
 
             plt.legend(prop={'size':10});
             plt.xlabel('Date'); plt.ylabel('Price ($)'); plt.title('Stock Price with Changepoints')
-            plt.show()
+            #plt.show()
+            fig = plt.gcf()
+            fig.savefig("./static/" + self.tick + "-changepoint-date-analysis.png", dpi=100)
+            fig.clear()
         
         # Search for search term in google news
         # Show related queries, rising related queries
@@ -883,7 +886,10 @@ class Stocker():
             # Plot formatting
             plt.legend(prop={'size': 10})
             plt.xlabel('Date'); plt.ylabel('Normalized Values'); plt.title('%s Stock Price and Search Frequency for %s' % (self.symbol, search))
-            plt.show()
+            # plt.show()
+            fig = plt.gcf()
+            fig.savefig("./static/" + self.tick + "-changepoint-date-analysis.png", dpi=100)
+            fig.clear()
         
     # Predict the future price for a given range of days
     def predict_future(self, days=30):
