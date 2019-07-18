@@ -38,7 +38,7 @@ class Change_Points_Date():
         self.summary = stock.changepoint_date_analysis(search=changept_search)
         self.filepath = ticker + "-changepoint-date-analysis.png"
 
-@app.route('/Dashboard', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def plot_input_post():
     if request.method == 'POST':
         text = request.form['ticker']
