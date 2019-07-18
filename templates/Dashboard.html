@@ -42,7 +42,7 @@ Tip 2: you can also add an image using data-image tag
 <div class="logo">
 </a>
 <a href="" class="simple-text logo-normal">
-  StockAnalytica
+  Stock Explorer
 </a>
 </div>
 <div class="sidebar-wrapper">
@@ -167,7 +167,9 @@ Tip 2: you can also add an image using data-image tag
             </div>
             <div class="card-body">
               <h4 class="card-title">Stock Prediction</h4>
-              <p class="card-category"></p>
+              <p class="card-category">
+                {{ prophet_model.predicted_price }}
+              </p>
 
             </div>
             <div class="card-footer">
@@ -177,12 +179,32 @@ Tip 2: you can also add an image using data-image tag
             </div>
           </div>
         </div>
+        <div>
+            <div class="card card-chart">
+              <div class="card-header card-header-warning">
+                <div class="ct-chart" id="websiteViewsChart"></div>
+                <img src = "{{url_for('static', filename=change_points_date.filepath)}}">
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Stock with Changepoints</h4>
+                <p class="card-category">
+                    {% for para in change_points_date.summary %}
+                    <p>{{para}}</p>
+                    {% endfor %}
+                </p>
+  
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons"></i> 
+                </div>
+              </div>
+            </div>
+          </div>
 
       </div>
     </div>
   </div>
-
-
   <!-- End Navbar -->
   <div class="content">
     <div class="container-fluid">

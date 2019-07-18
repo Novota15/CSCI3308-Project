@@ -512,11 +512,13 @@ class Stocker():
             # Print the predicted price
             print('Predicted Price on {} = ${:.2f}'.format(
                 future.loc[future.index[-1], 'ds'], future.loc[future.index[-1], 'yhat']))
+            predicted_price = 'Predicted Price on {} = ${:.2f}'.format(
+                future.loc[future.index[-1], 'ds'], future.loc[future.index[-1], 'yhat'])
 
             title = '%s Historical and Predicted Stock Price'  % self.symbol
         else:
             title = '%s Historical and Modeled Stock Price' % self.symbol
-        
+            predicted_price = "none"
         # Set up the plot
         fig, ax = plt.subplots(1, 1)
 
@@ -539,7 +541,7 @@ class Stocker():
         fig.savefig("./static/" + self.tick + "-prophet-model.png", dpi=100)
         fig.clear()
         
-        return model, future
+        return model, future, predicted_price
       
     # Evaluate prediction model for one year
     def evaluate_prediction(self, start_date=None, end_date=None, nshares = None):
@@ -809,7 +811,7 @@ class Stocker():
         
             print('\nChangepoints sorted by slope rate of change (2nd derivative):\n')
             print(c_data.loc[:, ['Date', 'Adj. Close', 'delta']][:5])
-
+            summary = '\nChangepoints sorted by slope rate of change (2nd derivative):\n' + str(c_data.loc[:, ['Date', 'Adj. Close', 'delta']][:5])
             # Line plot showing actual values, estimated values, and changepoints
             self.reset_plot()
             
@@ -844,13 +846,16 @@ class Stocker():
 
             if (trends is None)  or (related_queries is None):
                 print('No search trends found for %s' % search)
-                return
+                summary = 'No search trends found for %s' % search
+                return summary.split('\n')
 
             print('\n Top Related Queries: \n')
             print(related_queries[search]['top'].head())
 
             print('\n Rising Related Queries: \n')
             print(related_queries[search]['rising'].head())
+
+            summary = '\n Top Related Queries: \n' + str(related_queries[search]['top'].head()) + '\n Rising Related Queries: \n' + related_queries[search]['rising'].head()
 
             # Upsample the data for joining with training data
             trends = trends.resample('D')
@@ -890,6 +895,7 @@ class Stocker():
             fig = plt.gcf()
             fig.savefig("./static/" + self.tick + "-changepoint-date-analysis.png", dpi=100)
             fig.clear()
+        return summary.split('\n')
         
     # Predict the future price for a given range of days
     def predict_future(self, days=30):
