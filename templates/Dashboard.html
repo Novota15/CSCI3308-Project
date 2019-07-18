@@ -183,6 +183,26 @@ Tip 2: you can also add an image using data-image tag
             <div class="card card-chart">
               <div class="card-header card-header-warning">
                 <div class="ct-chart" id="websiteViewsChart"></div>
+                <img src = "{{url_for('static', filename=trends_plot.filepath)}}">
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Trends</h4>
+                <p class="card-category">
+                  
+                </p>
+  
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons"></i> 
+                </div>
+              </div>
+            </div>
+          </div>
+        <div>
+            <div class="card card-chart">
+              <div class="card-header card-header-warning">
+                <div class="ct-chart" id="websiteViewsChart"></div>
                 <img src = "{{url_for('static', filename=change_points_date.filepath)}}">
               </div>
               <div class="card-body">
