@@ -328,6 +328,15 @@ class Stocker():
         fig = plt.gcf()
         fig.savefig("./static/" + self.tick + ".png", dpi=100)
         fig.clear()
+
+        # xPix = 100
+        # yPix = 100
+        # xSize = 3 #inches
+        # ySize = xSize/xPix*yPix
+        # fig.set_inches_size(xSize,ySize)
+        # fig.savefig("./static/" + self.tick + ".png", dpi=xSize/xPix)
+        # fig.clear()
+
         return Maximum, Minimum, Current
         
     # Reset the plotting parameters to clear style formatting
