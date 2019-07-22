@@ -70,6 +70,11 @@ def dashboard():
     yesterday = datetime.now() - timedelta(days=4)
     yesterday.strftime('%Y-%m-%d')
     # print(yesterday)
+    global stock
+    global history_plot
+    global prophet_model
+    global trends_plot
+    global change_points_date
     if request.method == 'POST':
         text = request.form['ticker']
         # settings parameters
@@ -83,11 +88,6 @@ def dashboard():
         # potential_profit_end_date = yesterday
         # nshares = 100
     else:
-        global stock
-        global history_plot
-        global prophet_model
-        global trends_plot
-        global change_points_date
         return render_template("dashboard.html", history_plot=history_plot, prophet_model=prophet_model, trends_plot=trends_plot, change_points_date=change_points_date)
 
         # default is microsoft stock
