@@ -43,12 +43,12 @@ class Stocker():
 
         # Retrieval the financial data
         try:
-            data, meta_data = alpha_ts.get_daily(symbol=ticker, outputsize='full')
+            # data, meta_data = alpha_ts.get_daily(symbol=ticker, outputsize='full')
             #data, meta_data = alpha_ts.get_intraday(symbol=ticker, interval='1min', outputsize='full')
             #data.rename({'date': 'Date','4. close': 'Adj. Close', '1. open': 'Adj. Open'}, axis=1, inplace=True)
             
-            data.columns = ['Date','Adj. Open','2. high','3. low','Adj. Close', 'Volume']
-            data['Date'] =  pd.to_datetime(data['Date'])
+            # data.columns = ['Date','Adj. Open','2. high','3. low','Adj. Close', 'Volume']
+            # data['Date'] =  pd.to_datetime(data['Date'])
             # data.to_csv('msft.csv')
         #    #formatted_data = StringIO(data)
         #    print(type(data))
@@ -58,7 +58,7 @@ class Stocker():
         #    stock = quandl.get('%s/%s' % (exchange, ticker), end_date="2019-06-12")
         #    stock.to_csv('msftquandle.csv')
         #    print("stock var type:", type(stock))
-            stock = data
+            # stock = data
             # start_date = datetime.datetime(2010,1,1)
             # end_date = datetime.datetime(2019,7,17)
             start_date = datetime.datetime(2010,1,1)
