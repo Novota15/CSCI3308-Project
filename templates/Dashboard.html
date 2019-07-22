@@ -30,7 +30,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body>
   <div class="wrapper ">
-    <div class="sidebar" data-color="azure" data-background-color="white">
+    <div class="sidebar" data-color="azure" data-background-color="green">
 <!--
 Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 Tip 2: you can also add an image using data-image tag
@@ -45,40 +45,70 @@ Tip 2: you can also add an image using data-image tag
   <ul class="nav">
     
     <li class="nav-item active  ">
-      <a class="nav-link" href="#0"  data-image="../assets/img/vue.png">
+      <a class="nav-link" href="#0"  data-image="../static/assets/img/vue.png">
         <i class="material-icons">dashboard</i>
         <p>Dashboard</p>
       </a>
     </li>
 
-
-
-
-    <li class=" active nav-item dropdown">
-      <a class="nav-link" href="#0" id="navbarDropdownMenuLink" >
+    <li class=" active nav-item dropdown " >
+      <a class="nav-link" href="#0" id="navbarDropdownMenuLink"  data-color="purple">
         <i class="material-icons">settings</i>
 
-        <span class="notification" >Settings</span>
-        <div  >
-        <a class="dropdown-item1" style="display: none;" >
-          <form>
-            Start Date
+        <span class="notification" data-color="purple" >Settings</span>
+        <div>
+        </div>
+      </a>
+
+      <a class="dropdown-item1 active nav-item" style="display: none; background-color: #43a047;" >
+
+        <form>
+          Stock History
+          <br/>
+          <br/>
+          Start Date
           <input type="text">  </input> 
-           
+
         </form>
         End Date <input type="text">  </input> 
-        </a>
-                <a class="dropdown-item1" style="display: none;" >
-          <form>
-            Start Date
+      </a>
+      <a class="dropdown-item1" style="display: none; background-color: #fb8c00;" >
+
+        <form>
+          Stock Predicition
+          <br/>
+          <br/>
+          Start Date
           <input type="text">  </input> 
-           
+
         </form>
         End Date <input type="text">  </input> 
-        </a>
+      </a>
 
 
-      </div>
+            <a class="dropdown-item1 active nav-item"  style="display: none; background-color: #e53935;" >
+
+        <form>
+          Trends
+          <br/>
+          <br/>
+          Start Date
+          <input type="text">  </input> 
+
+        </form>
+        End Date <input type="text">  </input> 
+      </a>
+      <a class="dropdown-item1" style="display: none; ">
+
+        <form>
+          Stock with Change Point
+          <br/>
+          <br/>
+          Start Date
+          <input type="text">  </input> 
+
+        </form>
+        End Date <input type="text">  </input> 
       </a>
     </li>
 
@@ -150,8 +180,8 @@ Tip 2: you can also add an image using data-image tag
     </div>
     <div>
       <div>
-        <div class="card card-chart " style= "width:1000px;">
-          <div class="card-header card-header-success" style= "width:1000px;">
+        <div class="card card-chart " style= "width:700px;">
+          <div class="card-header card-header-success" style= "width:700px;">
             <div class="ct-chart" id="dailySalesChart"></div>
              <img src = "{{url_for('static', filename=history_plot.filepath)}}"> 
             <!--<img src = "https://live.staticflickr.com/2562/4008033338_ece5bc51f9_z_d.jpg">-->
@@ -175,8 +205,8 @@ Tip 2: you can also add an image using data-image tag
           </div>
         </div>
         <div>
-          <div class="card card-chart" style= "width:1000px;">
-            <div class="card-header card-header-warning" style= "width:1000px;">
+          <div class="card card-chart" style= "width:700px;">
+            <div class="card-header card-header-warning" style= "width:700px;">
               <div class="ct-chart" id="websiteViewsChart"></div>
              <img src = "{{url_for('static', filename=prophet_model.filepath)}}">
              <!--<img src = "https://live.staticflickr.com/2562/4008033338_ece5bc51f9_z_d.jpg"> -->
@@ -197,8 +227,8 @@ Tip 2: you can also add an image using data-image tag
           </div>
         </div>
                 <div>
-          <div class="card card-chart" style= "width:1000px;"> 
-            <div class="card-header card-header-danger" style= "width:1000px;">
+          <div class="card card-chart" style= "width:700px;"> 
+            <div class="card-header card-header-danger" style= "width:700px;">
               <div class="ct-chart" id="websiteViewsChart"></div>
                <img src = "{{url_for('static', filename=trends_plot.filepath)}}"> 
               <!--<img src = "https://live.staticflickr.com/2562/4008033338_ece5bc51f9_z_d.jpg"> -->
@@ -218,8 +248,8 @@ Tip 2: you can also add an image using data-image tag
           </div>
         </div>
                 <div>
-          <div class="card card-chart" style= "width:1000px;">
-            <div class="card-header card-header-info" style= "width:1000px;">
+          <div class="card card-chart" style= "width:700px;">
+            <div class="card-header card-header-info" style= "width:700px;">
               <div class="ct-chart" id="websiteViewsChart"></div>
               <img src = "{{url_for('static', filename=change_points_date.filepath)}}">
             </div>
