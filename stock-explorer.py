@@ -8,50 +8,68 @@ from datetime import date
 from datetime import timedelta
 
 from MarketData.stocker import Stocker
+import plots as Plots
 
 app = Flask(__name__)
 
-# Each plot is an object
-class History_Plot():
-    def __init__(self, stock, ticker, start_date, end_date):
-        # time parameters
-        self.start_date = start_date
-        self.end_date = end_date
-        # historical price values as string statements
-        self.historic_max, self.historic_min, self.current = stock.plot_stock(start_date, end_date)
-        self.filepath = ticker + ".png"
-
-class Prophet_Model():
-    def __init__(self, stock, ticker, days=0):
-        # of days into the future to predict
-        self.days = days
-        self.model, self.model_data, self.predicted_price = stock.create_prophet_model(self.days)
-        self.filepath = ticker + "-prophet-model.png"
-
-class Trends_Plot():
-    def __init__(self, ticker, model, model_data):
-        model.plot_components(model_data)
-        fig = plt.gcf()
-        fig.savefig("./static/" + ticker + "-trends-plot.png", dpi=100)
-        fig.clear()
-        self.filepath = ticker + "-trends-plot.png"
-
-class Change_Points_Date():
-    def __init__(self, stock, ticker, changept_search):
-        self.summary = stock.changepoint_date_analysis(search=changept_search)
-        self.filepath = ticker + "-changepoint-date-analysis.png"
-
-class Potential_Profit():
-    def __init__(self, stock, ticker, start_date, end_date, nshares):
-        # self.result = stock.buy_and_hold(start_date=start_date, end_date=end_date, nshares=nshares)
-        self.result = stock.buy_and_hold(nshares=100)
-        self.filepath = ticker + "-potential-profit.png"
+# initialize some default stock data for faster loading
+yesterday = datetime.now() - timedelta(days=4)
+yesterday.strftime('%Y-%m-%d')
+history_plot_start_date = datetime(2014,1,1)
+history_plot_end_date = yesterday
+future_days = 10
+# create stock object
+text = 'MSFT'
+stock = Stocker(ticker=text)
+# create plot objects
+history_plot = Plots.History_Plot(stock, text, history_plot_start_date, history_plot_end_date)
+prophet_model = Plots.Prophet_Model(stock, text, future_days)
+trends_plot = Plots.Trends_Plot(text, prophet_model.model, prophet_model.model_data)
+changept_search = ""
+change_points_date = Plots.Change_Points_Date(stock, text, changept_search)
+# potential_profit = Potential_Profit(stock, text, potential_profit_start_date, potential_profit_end_date, nshares)
 
 @app.route('/', methods=['GET','POST'])
-def plot_input_post():
-    yesterday = datetime.now() - timedelta(days=3)
+def default_page():
+    if request.method == 'POST':
+        return render_template("landing-page.html")
+    return render_template("landing-page.html")
+
+@app.route('/landing-page.html', methods=['GET','POST'])
+def landing_page():
+    if request.method == 'POST':
+        return render_template("landing-page.html")
+    return render_template("landing-page.html")
+
+@app.route('/login.html', methods=['GET','POST'])
+def login_page():
+    if request.method == 'POST':
+        return render_template("login.html")
+    return render_template("login.html")
+
+@app.route('/register.html', methods=['GET','POST'])
+def registration_page():
+    if request.method == 'POST':
+        return render_template("register.html")
+    return render_template("register.html")
+
+@app.route('/profile.html', methods=['GET','POST'])
+def profile_page():
+    if request.method == 'POST':
+        return render_template("profile.html")
+    return render_template("profile.html")
+
+@app.route('/settings.html', methods=['GET','POST'])
+def settings_page():
+    if request.method == 'POST':
+        return render_template("settings.html")
+    return render_template("settings.html")
+
+@app.route('/dashboard.html', methods=['GET','POST'])
+def dashboard():
+    yesterday = datetime.now() - timedelta(days=4)
     yesterday.strftime('%Y-%m-%d')
-    print(yesterday)
+    # print(yesterday)
     if request.method == 'POST':
         text = request.form['ticker']
         # settings parameters
@@ -61,32 +79,39 @@ def plot_input_post():
         # prophet model
         future_days = 10
         # potential profit plot
-        potential_profit_start_date = datetime(2014,1,1)
-        potential_profit_end_date = yesterday
-        nshares = 100
+        # potential_profit_start_date = datetime(2014,1,1)
+        # potential_profit_end_date = yesterday
+        # nshares = 100
     else:
+        global stock
+        global history_plot
+        global prophet_model
+        global trends_plot
+        global change_points_date
+        return render_template("dashboard.html", history_plot=history_plot, prophet_model=prophet_model, trends_plot=trends_plot, change_points_date=change_points_date)
+
         # default is microsoft stock
-        text = 'MSFT'
+        # text = 'MSFT'
         # history plot
-        history_plot_start_date = datetime(2014,1,1)
-        history_plot_end_date = yesterday
+        # history_plot_start_date = datetime(2014,1,1)
+        # history_plot_end_date = yesterday
         # prophet model
-        future_days = 10
+        # future_days = 10
         # potential profit model
-        potential_profit_start_date = datetime(2014,1,1)
-        potential_profit_end_date = yesterday
-        nshares = 100
+        # potential_profit_start_date = datetime(2014,1,1)
+        # potential_profit_end_date = yesterday
+        # nshares = 100
     # create stock object
     stock = Stocker(ticker=text)
     # create plot objects
-    history_plot = History_Plot(stock, text, history_plot_start_date, history_plot_end_date)
-    prophet_model = Prophet_Model(stock, text, future_days)
-    trends_plot = Trends_Plot(text, prophet_model.model, prophet_model.model_data)
+    history_plot = Plots.History_Plot(stock, text, history_plot_start_date, history_plot_end_date)
+    prophet_model = Plots.Prophet_Model(stock, text, future_days)
+    trends_plot = Plots.Trends_Plot(text, prophet_model.model, prophet_model.model_data)
     changept_search = ""
-    change_points_date = Change_Points_Date(stock, text, changept_search)
-    potential_profit = Potential_Profit(stock, text, potential_profit_start_date, potential_profit_end_date, nshares)
+    change_points_date = Plots.Change_Points_Date(stock, text, changept_search)
+    # potential_profit = Potential_Profit(stock, text, potential_profit_start_date, potential_profit_end_date, nshares)
 
-    return render_template("Dashboard.html", history_plot=history_plot, prophet_model=prophet_model, trends_plot=trends_plot, change_points_date=change_points_date, potential_profit=potential_profit)
+    return render_template("dashboard.html", history_plot=history_plot, prophet_model=prophet_model, trends_plot=trends_plot, change_points_date=change_points_date)
 
 if __name__ == '__main__':
     app.run()
