@@ -38,7 +38,7 @@ class Stocker():
         # Use Personal Api Key
         #quandl.ApiConfig.api_key = 'ACnuC1tLTWn4f4vAkE9J'
 
-        alpha_ts = TimeSeries(key='CSA4QYK4A5BRGCDC', output_format='pandas', indexing_type='integer')
+        # alpha_ts = TimeSeries(key='CSA4QYK4A5BRGCDC', output_format='pandas', indexing_type='integer')
 
 
         # Retrieval the financial data
@@ -49,7 +49,7 @@ class Stocker():
             
             data.columns = ['Date','Adj. Open','2. high','3. low','Adj. Close', 'Volume']
             data['Date'] =  pd.to_datetime(data['Date'])
-            data.to_csv('msft.csv')
+            # data.to_csv('msft.csv')
         #    #formatted_data = StringIO(data)
         #    print(type(data))
         #    stock = data
@@ -65,7 +65,7 @@ class Stocker():
             end_date = datetime.datetime.now().strftime('%Y-%m-%d')
             ystock = yf.download(ticker, start_date, end_date)
             ystock.head()
-            ystock.to_csv('ystock.csv')
+            # ystock.to_csv('ystock.csv')
             stock = ystock
         
         except Exception as e:
