@@ -35,44 +35,44 @@ changept_search = ""
 change_points_date = Plots.Change_Points_Date(stock, text, changept_search)
 # potential_profit = Potential_Profit(stock, text, potential_profit_start_date, potential_profit_end_date, nshares)
 
-@app.route('/', methods=['GET','POST'])
-def default_page():
-    if request.method == 'POST':
-        return render_template("landing-page.html")
-    return render_template("landing-page.html")
+# @app.route('/', methods=['GET','POST'])
+# def default_page():
+#     if request.method == 'POST':
+#         return render_template("landing-page.html")
+#     return render_template("landing-page.html")
 
-@app.route('/landing-page.html', methods=['GET','POST'])
-def landing_page():
-    if request.method == 'POST':
-        return render_template("landing-page.html")
-    return render_template("landing-page.html")
+# @app.route('/landing-page.html', methods=['GET','POST'])
+# def landing_page():
+#     if request.method == 'POST':
+#         return render_template("landing-page.html")
+#     return render_template("landing-page.html")
 
-@app.route('/login.php', methods=['GET','POST'])
-def login_page():
-    # data = ""
-    # call(["php", "templates/login.php", data])
-    # print(data)
-    if request.method == 'POST':
-        return render_template("login.php")
-    return render_template("login.php")
+# @app.route('/login.php', methods=['GET','POST'])
+# def login_page():
+#     # data = ""
+#     # call(["php", "templates/login.php", data])
+#     # print(data)
+#     if request.method == 'POST':
+#         return render_template("login.php")
+#     return render_template("login.php")
 
-@app.route('/register.html', methods=['GET','POST'])
-def registration_page():
-    if request.method == 'POST':
-        return render_template("register.html")
-    return render_template("register.html")
+# @app.route('/register.html', methods=['GET','POST'])
+# def registration_page():
+#     if request.method == 'POST':
+#         return render_template("register.html")
+#     return render_template("register.html")
 
-@app.route('/profile.html', methods=['GET','POST'])
-def profile_page():
-    if request.method == 'POST':
-        return render_template("profile.html")
-    return render_template("profile.html")
+# @app.route('/profile.html', methods=['GET','POST'])
+# def profile_page():
+#     if request.method == 'POST':
+#         return render_template("profile.html")
+#     return render_template("profile.html")
 
-@app.route('/settings.html', methods=['GET','POST'])
-def settings_page():
-    if request.method == 'POST':
-        return render_template("settings.html")
-    return render_template("settings.html")
+# @app.route('/settings.html', methods=['GET','POST'])
+# def settings_page():
+#     if request.method == 'POST':
+#         return render_template("settings.html")
+#     return render_template("settings.html")
 
 @app.route('/dashboard.html/history_start', methods=['GET','POST'])
 def history_plot_start_func():
