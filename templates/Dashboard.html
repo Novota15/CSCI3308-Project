@@ -43,11 +43,17 @@ Tip 2: you can also add an image using data-image tag
 </div>
 <div class="sidebar-wrapper">
   <ul class="nav">
-    
-    <li class="nav-item active  ">
+        <li class="nav-item active  ">
       <a class="nav-link" href="#0"  data-image="../static/assets/img/vue.png">
         <i class="material-icons">dashboard</i>
         <p>Dashboard</p>
+      </a>
+    </li>
+
+    <li class="nav-item active  ">
+      <a class="nav-link" href="#0"  data-image="../static/assets/img/vue.png">
+        <i class="material-icons">assessment</i>
+        <p>Assessments</p>
       </a>
     </li>
 
@@ -60,10 +66,15 @@ Tip 2: you can also add an image using data-image tag
         </div>
       </a>
       
-      <a class="dropdown-item1 active nav-item" style="display: none; background-color: #43a047;" >
+      <a class="dropdown-item1 active nav-item" style="display: none; background-color: #43a047; width: 200px" >
         <form action="/dashboard.html/history_start" method="POST">
-          <select name="history_plot_start">
-            <option value="2019-01-01">2019</option>
+        	Stock History 
+        	<br/>
+        	<br/>
+        	Start Date
+        	<br/>
+          <select name="history_plot_start" style= "width:50px;">
+            <option value="2019-01-01" >2019</option>
             <option value="2018-01-01">2018</option>
             <option value="2017-01-01">2017</option>
             <option value="2016-01-01">2016</option>
@@ -73,9 +84,16 @@ Tip 2: you can also add an image using data-image tag
           <input type="submit" value="Submit">
           </form>
       </a>
-      <a class="dropdown-item1" style="display: none; background-color: #fb8c00;" >
+      <a class="dropdown-item1" style="display: none; background-color: #fb8c00; width: 200px" >
+      	Stock Predicition
+      	<br/>
+<br/>
+
+      	Days in the Future
+      	<br/>
+
         <form action="/dashboard.html/prediction" method="POST">
-          <select name="future_days">
+          <select name="future_days" style= "width:50px;>
             <option value="10">10</option>
             <option value="20">20</option>
             <option value="30">30</option>
@@ -86,35 +104,8 @@ Tip 2: you can also add an image using data-image tag
           <input type="submit" value="Submit">
           </form> 
       </a>
-            <a class="dropdown-item1 active nav-item"  style="display: none; background-color: #e53935;" >
 
-        <form>
-          Trends
-          <br/>
-          <br/>
-          Start Date
-          <input type="text">  </input> 
 
-        </form>
-        End Date <input type="text">  </input> 
-      </a>
-      <a class="dropdown-item1" style="display: none; ">
-
-        <form>
-          Stock with Change Point
-          <br/>
-          <br/>
-          Start Date
-          <input type="text">  </input> 
-
-        </form>
-        End Date <input type="text">  </input> 
-      </a>
-      <button type="submit" class="btn btn-white btn-round btn-just-icon">
-        <i class="material-icons">search</i>
-
-        <div class="ripple-container"></div>
-      </button>
     </li>
 
     <!-- your sidebar here -->
@@ -126,7 +117,7 @@ Tip 2: you can also add an image using data-image tag
   <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
     <div class="container-fluid">
       <div class="navbar-wrapper">
-        <a class="navbar-brand" href="dashboard.html">Dashboard</a>
+        <a class="navbar-brand" href="dashboard.html">Assessments</a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
         <span class="sr-only">Toggle navigation</span>
@@ -203,9 +194,7 @@ Tip 2: you can also add an image using data-image tag
               <!-- <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p> -->
             </div>
             <div class="card-footer">
-              <div class="stats">
-                <i class="material-icons">access_time</i> updated 4 minutes ago
-              </div>
+
             </div>
           </div>
         </div>
