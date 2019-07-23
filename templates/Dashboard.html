@@ -67,24 +67,25 @@ Tip 2: you can also add an image using data-image tag
             <option value="2018-01-01">2018</option>
             <option value="2017-01-01">2017</option>
             <option value="2016-01-01">2016</option>
+            <option value="2015-01-01">2015</option>
+            <option value="2014-01-01">2014</option>
           </select>
           <input type="submit" value="Submit">
           </form>
       </a>
       <a class="dropdown-item1" style="display: none; background-color: #fb8c00;" >
-
-        <form>
-          Stock Predicition
-          <br/>
-          <br/>
-          Start Date
-          <input type="text">  </input> 
-
-        </form>
-        End Date <input type="text">  </input> 
+        <form action="/dashboard.html/prediction" method="POST">
+          <select name="future_days">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+            <option value="60">60</option>
+          </select>
+          <input type="submit" value="Submit">
+          </form> 
       </a>
-
-
             <a class="dropdown-item1 active nav-item"  style="display: none; background-color: #e53935;" >
 
         <form>

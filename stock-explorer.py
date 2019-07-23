@@ -10,6 +10,9 @@ from datetime import timedelta
 from MarketData.stocker import Stocker
 import plots as Plots
 
+import os
+from os import path
+
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
@@ -79,6 +82,20 @@ def history_plot_start_func():
     
     return render_template("dashboard.html", history_plot=history_plot, prophet_model=prophet_model, trends_plot=trends_plot, change_points_date=change_points_date)
 
+@app.route('/dashboard.html/prediction', methods=['GET','POST'])
+def prediction_func():
+    global text
+    global stock
+    global history_plot
+    global prophet_model
+    global trends_plot
+    global change_points_date
+    global future_days
+    future_days = int(request.form['future_days'])
+    prophet_model = Plots.Prophet_Model(stock, text, future_days)
+    return render_template("dashboard.html", history_plot=history_plot, prophet_model=prophet_model, trends_plot=trends_plot, change_points_date=change_points_date)
+
+
 @app.route('/dashboard.html', methods=['GET','POST'])
 def dashboard():
     yesterday = datetime.now() - timedelta(days=4)
@@ -129,4 +146,14 @@ def dashboard():
     return render_template("dashboard.html", history_plot=history_plot, prophet_model=prophet_model, trends_plot=trends_plot, change_points_date=change_points_date)
 
 if __name__ == '__main__':
-    app.run()
+    extra_dirs = ['/c/Users/gtnov/Documents/GitHub/CSCI3308-Project/static',]
+    extra_files = extra_dirs[:]
+    for extra_dir in extra_dirs:
+        for dirname, dirs, files in os.walk(extra_dir):
+            for filename in files:
+                filename = path.join(dirname, filename)
+                if path.isfile(filename):
+                    extra_files.append(filename)
+                    print(filename)
+    app.run(extra_files=extra_files)
+    # app.run()
