@@ -43,15 +43,15 @@ Tip 2: you can also add an image using data-image tag
 </div>
 <div class="sidebar-wrapper">
   <ul class="nav">
-        <li class="nav-item active  ">
-      <a class="nav-link" href="#0"  data-image="../static/assets/img/vue.png">
+    <li class="nav-item active  ">
+      <a class="nav-link" href="./cards.html"  data-image="../static/assets/img/vue.png">
         <i class="material-icons">dashboard</i>
         <p>Dashboard</p>
       </a>
     </li>
 
     <li class="nav-item active  ">
-      <a class="nav-link" href="#0"  data-image="../static/assets/img/vue.png">
+      <a class="nav-link" href="./dashboard.html"  data-image="../static/assets/img/vue.png">
         <i class="material-icons">assessment</i>
         <p>Assessments</p>
       </a>
@@ -65,14 +65,14 @@ Tip 2: you can also add an image using data-image tag
         <div>
         </div>
       </a>
-      
+
       <a class="dropdown-item1 active nav-item" style="display: none; background-color: #43a047; width: 200px" >
         <form action="/dashboard.html/history_start" method="POST">
-        	Stock History 
-        	<br/>
-        	<br/>
-        	Start Date
-        	<br/>
+          Stock History 
+          <br/>
+          <br/>
+          Start Date
+          <br/>
           <select name="history_plot_start" style= "width:50px;">
             <option value="2019-01-01" >2019</option>
             <option value="2018-01-01">2018</option>
@@ -82,34 +82,34 @@ Tip 2: you can also add an image using data-image tag
             <option value="2014-01-01">2014</option>
           </select>
           <input type="submit" value="Submit">
-          </form>
+        </form>
       </a>
       <a class="dropdown-item1" style="display: none; background-color: #fb8c00; width: 200px" >
-      	Stock Predicition
-      	<br/>
-<br/>
+        Stock Predicition
+        <br/>
+        <br/>
 
-      	Days in the Future
-      	<br/>
+        Days in the Future
+        <br/>
 
         <form action="/dashboard.html/prediction" method="POST">
           <select name="future_days" style= "width:50px;>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-            <option value="50">50</option>
-            <option value="60">60</option>
-          </select>
-          <input type="submit" value="Submit">
-          </form> 
-      </a>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="40">40</option>
+          <option value="50">50</option>
+          <option value="60">60</option>
+        </select>
+        <input type="submit" value="Submit">
+      </form> 
+    </a>
 
 
-    </li>
+  </li>
 
-    <!-- your sidebar here -->
-  </ul>
+  <!-- your sidebar here -->
+</ul>
 </div>
 </div>
 <div class="main-panel">
@@ -154,7 +154,7 @@ Tip 2: you can also add an image using data-image tag
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
               <a class="dropdown-item" href="profile.html">Profile</a>
-              <a class="dropdown-item" href="settings.html">Account Settings</a>
+
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="" >Log out</a> 
             </div>
@@ -179,123 +179,123 @@ Tip 2: you can also add an image using data-image tag
         <div class="card card-chart " style= "width:1000px;">
           <div class="card-header card-header-success" style= "width:1000px;">
             <div class="ct-chart" id="dailySalesChart"></div>
-             <img src = "{{url_for('static', filename=history_plot.filepath)}}"> 
+            <img src = "{{url_for('static', filename=history_plot.filepath)}}"> 
             <!--<img src = "https://live.staticflickr.com/2562/4008033338_ece5bc51f9_z_d.jpg">-->
           </div>
           <div class="card-body">
             <h4 class="card-title">Stock History</h4>
             <p class="card-category">
-                <ul>
-                    <li>{{ history_plot.historic_max }}</li>
-                    <li>{{ history_plot.historic_min }}</li>
-                    <li>{{ history_plot.current }}</li>
-                </ul>  
+              <ul>
+                <li>{{ history_plot.historic_max }}</li>
+                <li>{{ history_plot.historic_min }}</li>
+                <li>{{ history_plot.current }}</li>
+              </ul>  
             </p>
-              <!-- <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p> -->
-            </div>
-            <div class="card-footer">
+            <!-- <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p> -->
+          </div>
+          <div class="card-footer">
 
-            </div>
           </div>
         </div>
-        <div>
-          <div class="card card-chart" style= "width:1000px;">
-            <div class="card-header card-header-warning" style= "width:1000px;">
-              <div class="ct-chart" id="websiteViewsChart"></div>
-             <img src = "{{url_for('static', filename=prophet_model.filepath)}}">
-             <!--<img src = "https://live.staticflickr.com/2562/4008033338_ece5bc51f9_z_d.jpg"> -->
-
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">Stock Prediction</h4>
-              <p class="card-category">
-                  {{ prophet_model.predicted_price }}
-              </p>
-
-            </div>
-            <div class="card-footer">
-              <div class="stats">
-                <i class="material-icons"></i> 
-              </div>
-            </div>
-          </div>
-        </div>
-                <div>
-          <div class="card card-chart" style= "width:1000px;"> 
-            <div class="card-header card-header-danger" style= "width:1000px;">
-              <div class="ct-chart" id="websiteViewsChart"></div>
-               <img src = "{{url_for('static', filename=trends_plot.filepath)}}"> 
-              <!--<img src = "https://live.staticflickr.com/2562/4008033338_ece5bc51f9_z_d.jpg"> -->
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">Trends</h4>
-              <p class="card-category">
-                  
-              </p>
-
-            </div>
-            <div class="card-footer">
-              <div class="stats">
-                <i class="material-icons"></i> 
-              </div>
-            </div>
-          </div>
-        </div>
-                <div>
-          <div class="card card-chart" style= "width:1000px;">
-            <div class="card-header card-header-info" style= "width:1000px;">
-              <div class="ct-chart" id="websiteViewsChart"></div>
-              <img src = "{{url_for('static', filename=change_points_date.filepath)}}">
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">Stock with Changepoints</h4>
-              <p class="card-category">
-                  {% for para in change_points_date.summary %}
-                  <p>{{para}}</p>
-                  {% endfor %}
-              </p>
-
-            </div>
-            <div class="card-footer">
-              <div class="stats">
-                <i class="material-icons"></i> 
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
+      <div>
+        <div class="card card-chart" style= "width:1000px;">
+          <div class="card-header card-header-warning" style= "width:1000px;">
+            <div class="ct-chart" id="websiteViewsChart"></div>
+            <img src = "{{url_for('static', filename=prophet_model.filepath)}}">
+            <!--<img src = "https://live.staticflickr.com/2562/4008033338_ece5bc51f9_z_d.jpg"> -->
+
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Stock Prediction</h4>
+            <p class="card-category">
+              {{ prophet_model.predicted_price }}
+            </p>
+
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons"></i> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card card-chart" style= "width:1000px;"> 
+          <div class="card-header card-header-danger" style= "width:1000px;">
+            <div class="ct-chart" id="websiteViewsChart"></div>
+            <img src = "{{url_for('static', filename=trends_plot.filepath)}}"> 
+            <!--<img src = "https://live.staticflickr.com/2562/4008033338_ece5bc51f9_z_d.jpg"> -->
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Trends</h4>
+            <p class="card-category">
+
+            </p>
+
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons"></i> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card card-chart" style= "width:1000px;">
+          <div class="card-header card-header-info" style= "width:1000px;">
+            <div class="ct-chart" id="websiteViewsChart"></div>
+            <img src = "{{url_for('static', filename=change_points_date.filepath)}}">
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Stock with Changepoints</h4>
+            <p class="card-category">
+              {% for para in change_points_date.summary %}
+              <p>{{para}}</p>
+              {% endfor %}
+            </p>
+
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons"></i> 
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+</div>
 
 
-  <!-- End Navbar -->
-  <div class="content">
-    <div class="container-fluid">
-      <!-- your content here -->
-    </div>
+<!-- End Navbar -->
+<div class="content">
+  <div class="container-fluid">
+    <!-- your content here -->
   </div>
-  <footer class="footer">
-    <div class="container-fluid">
-      <nav class="float-left">
-        <ul>
-          <li>
-            <a href="https://www.creative-tim.com">
-              Creative Tim
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="copyright float-right">
-        &copy;
-        <script>
-          document.write(new Date().getFullYear())
-        </script>, made with <i class="material-icons">favorite</i> by
-        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-      </div>
-      <!-- your footer here -->
+</div>
+<footer class="footer">
+  <div class="container-fluid">
+    <nav class="float-left">
+      <ul>
+        <li>
+          <a href="https://www.creative-tim.com">
+            Creative Tim
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="copyright float-right">
+      &copy;
+      <script>
+        document.write(new Date().getFullYear())
+      </script>, made with <i class="material-icons">favorite</i> by
+      <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
     </div>
-  </footer>
+    <!-- your footer here -->
+  </div>
+</footer>
 </div>
 </div>
 
@@ -310,17 +310,17 @@ Tip 2: you can also add an image using data-image tag
 <script src="../static/assets/js/core/bootstrap-material-design.min.js"></script>
 <script src="../static/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script>
-        
-        // Monitors the buttons for click events and slides <img> in response
-        
- 
-        
-        $('#navbarDropdownMenuLink').click(function(){
-            $('.dropdown-item1').slideToggle('fast');
-        });
-    </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+
+// Monitors the buttons for click events and slides <img> in response
+
+
+
+$('#navbarDropdownMenuLink').click(function(){
+  $('.dropdown-item1').slideToggle('fast');
+});
+</script>
 
 
 
