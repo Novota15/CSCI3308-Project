@@ -77,6 +77,7 @@ def dashboard():
     global change_points_date
     if request.method == 'POST':
         text = request.form['ticker']
+        history_plot_start_date = request.form['history_plot_start']
         # settings parameters
         # history plot
         history_plot_start_date = datetime(2014,1,1)

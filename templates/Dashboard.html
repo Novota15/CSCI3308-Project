@@ -51,7 +51,7 @@ Tip 2: you can also add an image using data-image tag
       </a>
     </li>
 
-    <li class=" active nav-item dropdown " >
+    <li class=" active nav-item dropdown " action="/dashboard.html" method="POST">
       <a class="nav-link" href="#0" id="navbarDropdownMenuLink"  data-color="purple">
         <i class="material-icons">settings</i>
 
@@ -59,18 +59,27 @@ Tip 2: you can also add an image using data-image tag
         <div>
         </div>
       </a>
+      
 
       <a class="dropdown-item1 active nav-item" style="display: none; background-color: #43a047;" >
-
-        <form>
-          Stock History
-          <br/>
-          <br/>
-          Start Date
-          <input type="text">  </input> 
-
+        <form action="/dashboard.html" method="POST">
+          <div class="input-group no-border">
+            <select type="history_plot_start" name="ticker" class="form-control" placeholder="Start" style= "width:150px;">
+              <option value="2019-01-01">2019</option>
+              <option value="2018-01-01">2018</option>
+              <option value="TSLA">Tesla</option>
+              <option value="MSFT">Microsoft</option>
+              <option value="F">Ford</option>
+              <option value="FB">Facebook</option>
+              <option value="SNE">Sony</option>  
+            </select>
+            <button type="submit" class="btn btn-white btn-round btn-just-icon">
+              <i class="material-icons">search</i>
+  
+              <div class="ripple-container"></div>
+            </button>
+          </div>
         </form>
-        End Date <input type="text">  </input> 
       </a>
       <a class="dropdown-item1" style="display: none; background-color: #fb8c00;" >
 
@@ -110,6 +119,11 @@ Tip 2: you can also add an image using data-image tag
         </form>
         End Date <input type="text">  </input> 
       </a>
+      <button type="submit" class="btn btn-white btn-round btn-just-icon">
+        <i class="material-icons">search</i>
+
+        <div class="ripple-container"></div>
+      </button>
     </li>
 
     <!-- your sidebar here -->
