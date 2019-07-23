@@ -13,6 +13,8 @@ import plots as Plots
 import os
 from os import path
 
+from subprocess import call
+
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
@@ -45,11 +47,14 @@ def landing_page():
         return render_template("landing-page.html")
     return render_template("landing-page.html")
 
-@app.route('/login.html', methods=['GET','POST'])
+@app.route('/login.php', methods=['GET','POST'])
 def login_page():
+    # data = ""
+    # call(["php", "templates/login.php", data])
+    # print(data)
     if request.method == 'POST':
-        return render_template("login.html")
-    return render_template("login.html")
+        return render_template("login.php")
+    return render_template("login.php")
 
 @app.route('/register.html', methods=['GET','POST'])
 def registration_page():
@@ -146,14 +151,15 @@ def dashboard():
     return render_template("dashboard.html", history_plot=history_plot, prophet_model=prophet_model, trends_plot=trends_plot, change_points_date=change_points_date)
 
 if __name__ == '__main__':
-    extra_dirs = ['/c/Users/gtnov/Documents/GitHub/CSCI3308-Project/static',]
-    extra_files = extra_dirs[:]
-    for extra_dir in extra_dirs:
-        for dirname, dirs, files in os.walk(extra_dir):
-            for filename in files:
-                filename = path.join(dirname, filename)
-                if path.isfile(filename):
-                    extra_files.append(filename)
-                    print(filename)
-    app.run(extra_files=extra_files)
+    # extra_dirs = ['/c/Users/gtnov/Documents/GitHub/CSCI3308-Project/static',]
+    # extra_files = extra_dirs[:]
+    # for extra_dir in extra_dirs:
+    #     for dirname, dirs, files in os.walk(extra_dir):
+    #         for filename in files:
+    #             filename = path.join(dirname, filename)
+    #             if path.isfile(filename):
+    #                 extra_files.append(filename)
+    #                 print(filename)
+    # app.run(extra_files=extra_files)
+    app.run(host= '0.0.0.0')
     # app.run()
