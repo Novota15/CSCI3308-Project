@@ -11,6 +11,7 @@ from MarketData.stocker import Stocker
 import plots as Plots
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 
 # initialize some default stock data for faster loading
 yesterday = datetime.now() - timedelta(days=4)
@@ -65,11 +66,25 @@ def settings_page():
         return render_template("settings.html")
     return render_template("settings.html")
 
+@app.route('/dashboard.html/history_start', methods=['GET','POST'])
+def history_plot_start_func():
+    global text
+    global stock
+    global history_plot
+    global prophet_model
+    global trends_plot
+    global change_points_date
+    history_plot_start_date = request.form['history_plot_start']
+    history_plot = Plots.History_Plot(stock, text, history_plot_start_date, history_plot_end_date)
+    
+    return render_template("dashboard.html", history_plot=history_plot, prophet_model=prophet_model, trends_plot=trends_plot, change_points_date=change_points_date)
+
 @app.route('/dashboard.html', methods=['GET','POST'])
 def dashboard():
     yesterday = datetime.now() - timedelta(days=4)
     yesterday.strftime('%Y-%m-%d')
     # print(yesterday)
+    global text
     global stock
     global history_plot
     global prophet_model
@@ -77,7 +92,6 @@ def dashboard():
     global change_points_date
     if request.method == 'POST':
         text = request.form['ticker']
-        history_plot_start_date = request.form['history_plot_start']
         # settings parameters
         # history plot
         history_plot_start_date = datetime(2014,1,1)
