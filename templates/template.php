@@ -24,7 +24,9 @@
   session_start();
   if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1 ){
     $_SESSION['msg'] = "You must log in first to view this page";
+    $user = $_SESSION['user'];
     debug_to_console("auth = 1");
+    debug_to_console($user);
     //header("location: login.php");
   }
   else {
@@ -74,7 +76,7 @@
           </li>
 
         <li class="nav-item active  ">
-            <a class="nav-link" href="#0">
+            <a class="nav-link" href="Dashboard.html">
               <i class="material-icons">assessments</i>
               <p>Assesments</p>
             </a>
@@ -124,8 +126,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
 
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="Settings.php">Settings</a>
+                  <a class="dropdown-item" href="Profile.php">Profile</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item"  href="login.php"> Log out</a>
                 </div>

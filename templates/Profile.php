@@ -13,6 +13,26 @@
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 
+<?php
+ 
+ function debug_to_console( $data ) {
+  $output = $data;
+  if ( is_array( $output ) )
+    $output = implode( ',', $output);
+    echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
+}
+
+
+ session_start();
+ $username = $_SESSION['user'];
+ if(isset($_SESSION['updated_profile']) && $_SESSION['updated_profile'] == 1){
+   $_SESSION['updated_profile'] = 0;
+   echo '<script type="text/javascript">',
+     'alert("Updated profile settings.");',
+     '</script>';
+ }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,36 +75,15 @@ Tip 2: you can also add an image using data-image tag
       </a>
     </li>
 
-
-
-
-    <li class=" active nav-item dropdown">
-      <a class="nav-link" href="settings.html" id="navbarDropdownMenuLink" >
-        <i class="material-icons">settings</i>
-
-        <span class="notification" >Settings</span>
-        <div  >
-        <a class="dropdown-item1" style="display: none;" >
-          <form>
-            Start Date
-          <input type="text">  </input> 
-           
-        </form>
-        End Date <input type="text">  </input> 
-        </a>
-                <a class="dropdown-item1" style="display: none;" >
-          <form>
-            Start Date
-          <input type="text">  </input> 
-           
-        </form>
-        End Date <input type="text">  </input> 
-        </a>
-
-
-      </div>
+    <li class="nav-item active  ">
+      <a class="nav-link" href="dashboard.html"  data-image="../assets/img/vue.png">
+        <i class="material-icons">assessment</i>
+        <p>Assessments</p>
       </a>
     </li>
+
+
+    
 
     <!-- your sidebar here -->
   </ul>
@@ -132,9 +131,8 @@ Tip 2: you can also add an image using data-image tag
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
               <a class="dropdown-item" href="profile.html">Profile</a>
-              <a class="dropdown-item" href="settings.html">Account Settings</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="" >Log out</a> 
+              <a class="dropdown-item" href="login.php" >Log out</a> 
             </div>
           </li>
         </ul>
@@ -152,7 +150,7 @@ Tip 2: you can also add an image using data-image tag
                   <p class="card-category">Complete your profile</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form id="profile_form" method="post" action="server.php">
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
@@ -163,13 +161,19 @@ Tip 2: you can also add an image using data-image tag
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Username</label>
-                          <input type="text"  class="form-control" style= "width:150px;" >
+                          <input type="text"  class="form-control" style= "width:150px;" name="userName" id="userName">
                         </div>
                       </div>
                       <div class="col-md-5">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control" style= "width:300px;">
+                          <input type="email" class="form-control" style= "width:300px;" name="emailAddress" id="emailAddress">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Password</label>
+                          <input type="password" class="form-control" style= "width:150px;" name="password" id="password">
                         </div>
                       </div>
                     </div>
@@ -177,21 +181,21 @@ Tip 2: you can also add an image using data-image tag
                       <div class="col-md-5">
                         <div class="form-group">
                           <label class="bmd-label-floating">Fist Name</label>
-                          <input type="text" class="form-control" style= "width:150px;">
+                          <input type="text" class="form-control" style= "width:150px;" name="firstName" id="firstName">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control" style= "width:150px;">
+                          <input type="text" class="form-control" style= "width:150px;" name="lastName" id="lastName">
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Adress</label>
-                          <input type="text" class="form-control" style= "width:300px;">
+                          <label class="bmd-label-floating">Address</label>
+                          <input type="text" class="form-control" style= "width:300px;" name="address" id="address">
                         </div>
                       </div>
                     </div>
@@ -199,24 +203,24 @@ Tip 2: you can also add an image using data-image tag
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">City</label>
-                          <input type="text" class="form-control" style= "width:150px;">
+                          <input type="text" class="form-control" style= "width:150px;" name="city" id="city">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Country</label>
-                          <input type="text" class="form-control" style= "width:150px;">
+                          <input type="text" class="form-control" style= "width:150px;" name="country" id="country">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Postal Code</label>
-                          <input type="text" class="form-control" style= "width:150px;">
+                          <input type="text" class="form-control" style= "width:150px;" name="postalCode" id="postalCode">
                         </div>
                       </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                    <button type="submit" class="btn btn-primary pull-right" name="update_profile">Update Profile</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
@@ -231,7 +235,7 @@ Tip 2: you can also add an image using data-image tag
                 </div>
                 <div class="card-body">
                   <h6 class="card-category text-gray"></h6>
-                  <h4 class="card-title">User</h4>
+                  <h4 class="card-title" name="user-title" id="user-title">User</h4>
                   <p class="card-description">
                     DASH
                   </p>
@@ -266,11 +270,6 @@ Tip 2: you can also add an image using data-image tag
 </div>
 </div>
 
-
-
-
-
-
 <!--   Core JS Files   -->
 <script src="../static/assets/js/core/jquery.min.js"></script>
 <script src="../static/assets/js/core/popper.min.js"></script>
@@ -288,9 +287,34 @@ Tip 2: you can also add an image using data-image tag
             $('.dropdown-item1').slideToggle('fast');
         });
     </script>
-
-
-
+    <script>
+      var username = "<?php echo $_SESSION['user']; ?>";
+      var fullName = "<?php echo $_SESSION['fullname']; ?>";
+      var firstName = (fullName.toString()).split(" ")[0];
+      var lastName = (fullName.toString()).split(" ")[1];
+      var password = "<?php echo $_SESSION['password']; ?>";
+      var email = "<?php echo $_SESSION['emailAddress']; ?>";
+      var address = "<?php echo $_SESSION['Address']; ?>";
+      var city = "<?php echo $_SESSION['City']; ?>";
+      var country = "<?php echo $_SESSION['Country']; ?>";
+      var postalCode = "<?php echo $_SESSION['PostalCode']; ?>";
+      //var usernameBox = document.getElementById("userName");
+      var formObject = document.forms["profile_form"];
+      formObject.elements["userName"].value = username.toString();
+      if(firstName != undefined){
+        formObject.elements["firstName"].value = firstName;
+      }
+      if(lastName != undefined){
+        formObject.elements["lastName"].value = lastName;
+      }
+      
+      formObject.elements["emailAddress"].value = email.toString();
+      formObject.elements["address"].value = address.toString();
+      formObject.elements["city"].value = city.toString();
+      formObject.elements["country"].value = country.toString();
+      formObject.elements["postalCode"].value = postalCode.toString();
+      document.getElementById("user-title").innerHTML = username.toString();
+    </script>
 </body>
 
 </html>
