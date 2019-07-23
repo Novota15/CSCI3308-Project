@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +10,7 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
-  <link href="../static/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+  <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -25,71 +24,66 @@
   <br>
   <br>
   <div class="container">
-    <form action="Dashboard.html">
+    <form action="server.php" method = "post">
+      
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="Username">Username</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Username" id="Username"  placeholder="Enter Username">
+          <input type="text" class="form-control" name="Username" id="Username"  placeholder="Enter Username" required>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label" for="fullName">Full Name</label>
+        <label class="col-sm-2 col-form-label" for="fullname">Full Name</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="fullName" id="fullName"  placeholder="Enter Name">
+          <input type="text" class="form-control" name="fullname" id="fullname"  placeholder="Enter Name" required>
         </div>
       </div>
       <div class="form-group row">
         <label  class="col-sm-2 col-form-label" for="passwordFirst">Password</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="passwordFirst" name="passwordFirst" placeholder="Password">
+          <input type="password" class="form-control" id="passwordFirst" name="passwordFirst" placeholder="Password" required>
         </div>
       </div>
       <div class="form-group row">
         <label  class="col-sm-2 col-form-label" for="passwordConfirm">Confirm Password</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm Password">
+          <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm Password" required>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label"  for="emailAddress">Email address</label>
         <div class="col-sm-10">
-          <input type="email" class="form-control" name="emailAddress" id="emailAddress" placeholder="Enter email">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label" for="Username">Username</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" name="Username" id="Username"  placeholder="Enter Username">
+          <input type="email" class="form-control" name="emailAddress" id="emailAddress" placeholder="Enter email"  required>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="address">Address</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="address" id="address"  placeholder="Enter Your Address">
+          <input type="text" class="form-control" name="address" id="address"  placeholder="Enter Your Address" required>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label" for="city">City</label>
+        <label class="col-sm-2 col-form-label" for="City">City</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="city" id="city"  placeholder="City">
+          <input type="text" class="form-control" name="City" id="City"  placeholder="City" required>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="Region">Region</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="Region" id="Region"  placeholder="Region">
+          <input type="text" class="form-control" name="Region" id="Region"  placeholder="Region" required>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="PostalCode">PostalCode</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="PostalCode" id="PostalCode"  placeholder="PostalCode">
+          <input type="text" class="form-control" name="PostalCode" id="PostalCode"  placeholder="PostalCode" required>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="countries">Country</label>
         <div class="col-sm-10">
-          <select type="text" class="form-control" name="Country" id="Country"  placeholder="Country" >
+          <select type="text" class="form-control" name="Country" id="Country"  placeholder="Country" required >
             <option value="Coun">Afghanistan</option>
             <option value="AF">Afghanistan</option>
             <option value="AX">Åland Islands</option>
@@ -342,19 +336,19 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="Phone">Phone</label>
         <div class="col-sm-10">
-          <input type="tel" class="form-control" name="Phone" id="Phone"  placeholder="Phone">
-
-
+          <input type="tel" class="form-control" name="Phone" id="Phone"  placeholder="Phone" required>
         </div>
       </div>
-      <input type="submit" value="submit" class="btn btn-primary btn-block">
+      <input type="submit" value="submit" name="register_user" class="btn btn-primary btn-block">
     </form>
     <br>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-  
+  <?php
+     echo '<script>console.log("your stuff here")</script>';
+  ?>
 
 </body>
 
