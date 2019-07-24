@@ -45,17 +45,21 @@ The above copyright notice and this permission notice shall be included in all c
 
 <?php
 function printcard($id,$db1){
-   $tbl = "select * from nasdaq_data where Symbol = '$id' limit 1 ";
+   $tbl = "select * from nasdaq_data where nasdaq_data.Symbol = '$id' limit 1 ";
    $tbl1 = mysqli_query($db1,$tbl);
+   if(mysqli_num_rows($tbl1) == 0){
+    $tbl = "select * from nyse_data where nyse_data.Symbol = '$id' limit 1 ";
+    $tbl1 = mysqli_query($db1,$tbl);
+   }
    $rows = mysqli_fetch_assoc($tbl1);
-   echo '<p <span style = "color: black;"> Name:'.$rows["Name"].'</span></p>'.
-   '<p <span style = "color: black;"> Last Sale:'.$rows["LastSale"].'</span></p>'.
-   '<p <span style = "color: black;"> Market Capacity:'.$rows["MarketCap"].'</span></p>'.
-   '<p <span style = "color: black;"> Address:' .$rows["ADR_TSO"].'</span></p>'.
-   '<p <span style = "color: black;">IPO year:'.$rows["IPOyear"].'</span></p>'.
-   '<p <span style = "color: black;"> Sector: '.$rows["Sector"].'</span></p>'.
-   '<p <span style = "color: black;">Industry: '.$rows["Industry"].'</span></p>'.
-   '<p <span style = "color: black;">Summary Qoute: '.$rows["Summary_Quote"].'</span></p>';
+   debug_to_console($rows["Name"]);
+   echo '<p <span style = "color: black;"><strong> Name: </strong>'.$rows["Name"].'</span></p>'.
+   '<p <span style = "color: black;"><strong> Last Sale: </strong>'.$rows["LastSale"].'</span></p>'.
+   '<p <span style = "color: black;"><strong> Market Capacity: </strong>'.$rows["MarketCap"].'</span></p>'.
+   '<p <span style = "color: black;"><strong> Address: </strong>' .$rows["ADR_TSO"].'</span></p>'.
+   '<p <span style = "color: black;"><strong> IPO year: </strong>'.$rows["IPOyear"].'</span></p>'.
+   '<p <span style = "color: black;"><strong> Sector: </strong>'.$rows["Sector"].'</span></p>'.
+   '<p <span style = "color: black;"><strong>Industry: </strong>'.$rows["Industry"].'</span></p>';
 }
  ?>
 
@@ -73,6 +77,7 @@ function printcard($id,$db1){
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
   <link href="../static/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
 
 </head>
@@ -127,7 +132,7 @@ Tip 2: you can also add an image using data-image tag
       </button>
       <div class="collapse navbar-collapse justify-content-end">
         <form class="navbar-form" action="." method="POST">
-          <div class="input-group no-border">
+          <div class="input-group no-border" style="visibility: hidden;">
             <select type="text" name="ticker" class="form-control" placeholder="Search..." style= "width:150px;">
               <option value="Search">Search..</option>
               <option value="GOOG">Google</option>
@@ -172,7 +177,7 @@ Tip 2: you can also add an image using data-image tag
           <div class="card card-stats">
             <div class="card-header card-header-GRAY card-header-icon">
               <div class="card-icon">
-                <i class="fa fa-apple"></i>
+                <i class="fab fa-apple"></i>
               </div>
               <p>
                 <button value="GOOG" type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -195,7 +200,7 @@ Tip 2: you can also add an image using data-image tag
           <div class="card card-stats">
             <div class="card-header card-header-danger card-header-icon">
               <div class="card-icon">
-                <i class="fa fa-google"></i>
+                <i class="fab fa-google"></i>
               </div>
               <p>
                 <button value="" type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -217,14 +222,14 @@ Tip 2: you can also add an image using data-image tag
           <div class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
               <div class="card-icon">
-                <i class="fa fa-facebook"></i>
+                <i class="fab fa-facebook"></i>
               </div>
               <p> <button value="" type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <h7  class="card-category material-icons"> close </h7>  </button> </p>
               <br/>
               <h3 class="card-title">Facebook</h3>
               <?php
-              $id = 'GOOG';
+              $id = 'FB';
                printcard($id,$db1);
             ?>
             </div>
@@ -237,14 +242,14 @@ Tip 2: you can also add an image using data-image tag
           <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
               <div class="card-icon">
-                <i class="fa fa-amazon"></i>
+                <i class="fab fa-twitter"></i>
               </div>
               <p>  <button value="" type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <h7  class="card-category material-icons"> close </h7>  </button> </p>
               <br/>
-              <h3 class="card-title">Amazon</h3>
+              <h3 class="card-title">Twitter</h3>
               <?php
-              $id = 'GOOG';
+              $id = 'TWTR';
                printcard($id,$db1);
             ?>
             </div>
@@ -264,10 +269,9 @@ Tip 2: you can also add an image using data-image tag
       <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">
-            <div class="card-header card-header-GRAY card-header-icon">
+            <div class="card-header card-header-warning card-header-icon">
               <div class="card-icon">
-                 <img src="../static/assets/img/sony.png" style =" width: 55px; height: 55px;"></img>
-
+              <i class="fab fa-amazon"></i>
               </div>
               <p>
                 <button value="GOOG" type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -275,9 +279,9 @@ Tip 2: you can also add an image using data-image tag
                 </button>
               </p>
               <br/>
-              <h3 class="card-title">Sony</h3>
+              <h3 class="card-title">Amazon</h3>
               <?php
-              $id = 'GOOG';
+              $id = 'AMZN';
                printcard($id,$db1);
             ?>
             </div>
@@ -299,7 +303,7 @@ Tip 2: you can also add an image using data-image tag
               <br/>
               <h3 class="card-title">Tesla</h3>
               <?php
-              $id = 'GOOG';
+              $id = 'TSLA';
                printcard($id,$db1);
             ?>
             </div>
@@ -311,14 +315,14 @@ Tip 2: you can also add an image using data-image tag
           <div class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
               <div class="card-icon">
-                <i class="fa fa-facebook"></i>
+                <i class="fab fa-cc-visa"></i>
               </div>
               <p> <button value="" type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <h7  class="card-category material-icons"> close </h7>  </button> </p>
               <br/>
-              <h3 class="card-title">Facebook</h3>
+              <h3 class="card-title">VISA</h3>
               <?php
-              $id = 'GOOG';
+              $id = 'V';
                printcard($id,$db1);
             ?>
             </div>
@@ -329,19 +333,59 @@ Tip 2: you can also add an image using data-image tag
 
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">
-            <div class="card-header card-header-warning card-header-icon">
+            <div class="card-header card-header-rose card-header-icon">
               <div class="card-icon">
-                <i class="fa fa-amazon"></i>
+                <i class="fab fa-lyft"></i>
               </div>
               <p>  <button value="" type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <h7  class="card-category material-icons"> close </h7>  </button> </p>
               <br/>
-              <h3 class="card-title">Amazon</h3>
+              <h3 class="card-title">Lyft, Inc.</h3>
                <?php
-                $id = 'GOOG';
+                $id = 'LYFT';
                  printcard($id,$db1);
               ?>
             </div>
+            <div class="card-footer">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-stats">
+            <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                <i class="fab fa-spotify"></i>
+              </div>
+              <p>  <button value="" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <h7  class="card-category material-icons"> close </h7>  </button> </p>
+              <br/>
+              <h3 class="card-title">Spotify</h3>
+               <?php
+                $id = 'SPOT';
+                 printcard($id,$db1);
+              ?>
+            </div>
+            <div class="card-footer">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-stats">
+            <div class="card-header card-header-warning card-header-icon">
+              <div class="card-icon">
+                <i class="fab fa-microsoft"></i>
+              </div>
+              <p>  <button value="" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <h7  class="card-category material-icons"> close </h7>  </button> </p>
+              <br/>
+              <h3 class="card-title">Microsoft</h3>
+               <?php
+                $id = 'MSFT';
+                 printcard($id,$db1);
+              ?>
+          </div>
             <div class="card-footer">
             </div>
           </div>
