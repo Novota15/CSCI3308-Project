@@ -1,3 +1,27 @@
+<?php
+
+  function debug_to_console( $data ) {
+    $output = $data;
+    if ( is_array( $output ) )
+      $output = implode( ',', $output);
+      echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
+  }
+  
+  session_start();
+  if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1 ){
+    $_SESSION['msg'] = "You must log in first to view this page";
+    $user = $_SESSION['user'];
+    debug_to_console("auth = 1");
+    debug_to_console($user);
+    //header("location: login.php");
+  }
+  else {
+    $_SESSION['auth'] = 0;
+    header("location: login.php");
+  }
+
+?>
+
 <!doctype html>
 
 <!--
@@ -77,34 +101,10 @@ Tip 2: you can also add an image using data-image tag
       </a>
     </li>
 
-
-
-
-    <li class=" active nav-item dropdown">
-      <a class="nav-link" href="#0" id="navbarDropdownMenuLink" >
-        <i class="material-icons">settings</i>
-
-        <span class="notification" >Settings</span>
-        <div  >
-          <a class="dropdown-item1" style="display: none;" >
-            <form>
-              Start Date
-              <input type="text">  </input>
-
-            </form>
-            End Date <input type="text">  </input>
-          </a>
-          <a class="dropdown-item1" style="display: none;" >
-            <form>
-              Start Date
-              <input type="text">  </input>
-
-            </form>
-            End Date <input type="text">  </input>
-          </a>
-
-
-        </div>
+    <li class="nav-item active  ">
+      <a class="nav-link" href="http://10.201.85.150:5000/dashboard.html"  data-image="../assets/img/vue.png">
+        <i class="material-icons">assessment</i>
+        <p>Assessments</p>
       </a>
     </li>
 
@@ -153,10 +153,9 @@ Tip 2: you can also add an image using data-image tag
               </p>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-              <a class="dropdown-item" href="profile.html">Profile</a>
-              <a class="dropdown-item" href="settings.html">Account Settings</a>
+              <a class="dropdown-item" href="Profile.php">Profile</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="" >Log out</a>
+              <a class="dropdown-item" href="landing-page.html" >Log out</a>
             </div>
           </li>
         </ul>

@@ -26,7 +26,7 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
-  <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+  <link href="../static/assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -54,8 +54,8 @@
 </body>
 
 
-<script src="../assets/js/core/jquery.min.js"></script>
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap-material-design.min.js"></script>
-<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<script src="../static/assets/js/core/jquery.min.js"></script>
+<script src="../static/assets/js/core/popper.min.js"></script>
+<script src="../static/assets/js/core/bootstrap-material-design.min.js"></script>
+<script src="../static/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 </html>

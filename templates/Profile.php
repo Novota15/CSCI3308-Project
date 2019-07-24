@@ -69,14 +69,14 @@ Tip 2: you can also add an image using data-image tag
   <ul class="nav">
     
     <li class="nav-item active  ">
-      <a class="nav-link" href="10.201.85.150:5000/dashboard.html"  data-image="../assets/img/vue.png">
+      <a class="nav-link" href="cards.php"  data-image="../assets/img/vue.png">
         <i class="material-icons">dashboard</i>
         <p>Dashboard</p>
       </a>
     </li>
 
     <li class="nav-item active  ">
-      <a class="nav-link" href="dashboard.html"  data-image="../assets/img/vue.png">
+      <a class="nav-link" href="http://10.201.85.150:5000/dashboard.html"  data-image="../assets/img/vue.png">
         <i class="material-icons">assessment</i>
         <p>Assessments</p>
       </a>
@@ -130,9 +130,9 @@ Tip 2: you can also add an image using data-image tag
               </p>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-              <a class="dropdown-item" href="profile.html">Profile</a>
+              <a class="dropdown-item" href="Profile.php">Profile</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="login.php" >Log out</a> 
+              <a class="dropdown-item" href="landing-page.html" >Log out</a> 
             </div>
           </li>
         </ul>
@@ -223,23 +223,6 @@ Tip 2: you can also add an image using data-image tag
                     <button type="submit" class="btn btn-primary pull-right" name="update_profile">Update Profile</button>
                     <div class="clearfix"></div>
                   </form>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card card-profile">
-                <div class="card-avatar">
-                  <a href="#pablo">
-                    <img class="img" src="../static/assets/img/faces/ali.jpg" />
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h6 class="card-category text-gray"></h6>
-                  <h4 class="card-title" name="user-title" id="user-title">User</h4>
-                  <p class="card-description">
-                    DASH
-                  </p>
-                  <a href="#pablo" class="btn btn-primary btn-round">Edit</a>
                 </div>
               </div>
             </div>

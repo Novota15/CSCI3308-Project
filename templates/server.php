@@ -93,7 +93,7 @@ if(isset($_POST['register_user'])){
     $_SESSION['PostalCode'] = $PostalCode;
     $_SESSION['Country'] = $Country;
     $_SESSION['Phone'] = $Phone;
-    header("location: template.php");
+    header("location: cards.php");
   }
   else{
     error($errors);
@@ -120,7 +120,6 @@ if(isset($_POST['login_user'])){
     debug_to_console(mysqli_num_rows($result));
     if(mysqli_num_rows($result)){
       $user_login = mysqli_fetch_assoc($result);
-      debug_to_console("What about fucking now");
       $_SESSION['auth'] = 1;
       $_SESSION['user'] = $user_login["Username"];
       $_SESSION['fullname'] = $user_login["fullname"];
@@ -133,9 +132,7 @@ if(isset($_POST['login_user'])){
       $_SESSION['Country'] = $user_login["Country"];
       $_SESSION['Phone'] = $user_login["Phone"];
       $_SESSION['success'] = "You are now logged in";
-      debug_to_console("Clicked Log In 2");
-      debug_to_console($_SESSION['user']);
-      header("location: template.php");
+      header("location: cards.php");
     }
     else{
       array_push($errors, "Wrong Password/Username");

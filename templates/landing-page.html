@@ -29,7 +29,14 @@ Licensed under MIT (https://github.com/creativetimofficial/material-kit/blob/mas
   <!-- CSS Files -->
   <link href="../static/assets/css/material-kit.css?v=2.0.5" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-
+  <script type="text/javascript">
+    function goToLogin() {
+        window.location.href = 'login.php';           
+    }
+    function goToRegister() {
+        window.location.href = 'registration.php';           
+    }
+</script>
 </head>
 
 <body class="landing-page sidebar-collapse">
@@ -184,10 +191,10 @@ Licensed under MIT (https://github.com/creativetimofficial/material-kit/blob/mas
                 <h4 class="text-center description">To start the demo please click on the Register button below to create an account. Already have an account? Click Login!</h4>
                 <div class="row">
                   <div class="col-md-4 ml-auto mr-auto text-center">
-                    <button class="btn btn-primary btn-raised" onclick="window.location.href ='login.html';" >
+                    <button class="btn btn-primary btn-raised" onclick="goToLogin(); return false;" >
                       login
                     </button>
-                    <button class="btn btn-primary btn-raised" onclick="window.location.href ='registration.html';" >register  </button>
+                    <button class="btn btn-primary btn-raised" onclick="goToRegister(); return false;" >register  </button>
                   </div>
                 </div>
 
